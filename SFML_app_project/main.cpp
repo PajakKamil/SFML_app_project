@@ -24,6 +24,7 @@ int main()
 	sf::Event event;
 	while (window.isOpen())
 	{
+		std::cout << "\nkurwa dzia³a XXDXDX???\n";
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
