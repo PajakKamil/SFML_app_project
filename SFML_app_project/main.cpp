@@ -14,12 +14,12 @@ int main()
 	//balls[0].setPosition(100, 200)
 	
 	//Lista:
-	std::list<Ball> balls;
+	/*std::list<Ball> balls;
 	balls.push_back(shape);
 	balls.resize(10);
 	//auto balls_it = balls.begin();
 	//			//lub
-	std::list<Ball>::iterator balls_it = balls.begin();
+	std::list<Ball>::iterator balls_it = balls.begin();*/
 
 	sf::Event event;
 	while (window.isOpen())
