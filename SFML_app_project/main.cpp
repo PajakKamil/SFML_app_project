@@ -8,9 +8,19 @@ int main()
 	window.setFramerateLimit(60);
 	Ball main_shape;
 	Ball shape(300, 300);
+	//Vector:
 	//std::vector<Ball> balls;
-	//balls.push_back(shape);
+	//balls.push_back(shape);				//Dzia³a
 	//balls[0].setPosition(100, 200)
+	
+	//Lista:
+	std::list<Ball> balls;
+	balls.push_back(shape);
+	balls.resize(10);
+	//auto balls_it = balls.begin();
+	//			//lub
+	std::list<Ball>::iterator balls_it = balls.begin();
+
 	sf::Event event;
 	while (window.isOpen())
 	{
@@ -23,14 +33,20 @@ int main()
 		main_shape.Update(window);
 		shape.Update(window);
 		//balls[0].Update(window);
-		Ball::Collision(main_shape, shape);
-		Ball::Take_control(shape);
-		//main_shape.Consume(main_shape, shape);
-		//main_shape.Consume(main_shape, balls[0]);
+		Ball::Collision(main_shape, shape);			// Kazd¹ kolizjê trzeba sprawdzaæ osobno (niestety / stety)
+		Ball::Take_control(shape);					// Nad jakim obiektem chcesz przej¹æ kontrolê?
 		window.clear(sf::Color::Black);
 		window.draw(main_shape);
 		window.draw(shape);
+		//Draw dla vectora:
 		//window.draw(balls[0]);
+
+		//Draw dla listy:
+		/*for (balls_it = balls.begin(); balls_it != balls.end(); balls_it++)
+		{
+			Ball& rect = (*balls_it);
+			window.draw(rect);
+		}*/
 		window.display();
 	}
 	return 0;
@@ -192,7 +208,7 @@ int main()
 //			window.draw(rect);
 //		}
 //		/*for (auto balls_it = balls.begin(); balls_it != balls.end(); balls_it++)
-//			window.draw(*balls_it);*/
+//			window.draw(*balls_it);*/	//Ten sprób to nie sposób bo nie dzi³a :(
 //		window.display();
 //	}
 //	return 0;
