@@ -23,7 +23,7 @@ int main()
 		main_shape.Update(window);
 		shape.Update(window);
 		//balls[0].Update(window);
-		Ball::Consume(main_shape, shape);
+		Ball::Collision(main_shape, shape);
 		Ball::Take_control(shape);
 		//main_shape.Consume(main_shape, shape);
 		//main_shape.Consume(main_shape, balls[0]);

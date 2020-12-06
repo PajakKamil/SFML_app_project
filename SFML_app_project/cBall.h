@@ -20,14 +20,12 @@ public:
 	Ball(float _x, float _y);
 	~Ball() = default;
 	void Update(sf::RenderWindow& window);
-	static void Consume(Ball _master, Ball& _food);
-	void Set_position(float _x, float _y);
+	static void Collision(Ball _master, Ball& _food);
 	static void Take_control(Ball& _target);
 
 private:
 	sf::CircleShape shape;
 	const float shape_radius{ 10.f };
-	//virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates state) const;
 	sf::FloatRect shape_bounds;
 	sf::Vector2f ball_speed{};

@@ -85,7 +85,7 @@ float Ball::Right()
 	return shape.getPosition().x + shape.getRadius();
 }
 
-void Ball::Consume(Ball _which, Ball& _what)
+void Ball::Collision(Ball _which, Ball& _what)
 {
 	float distance_x(_which.shape.getPosition().x + (_what.shape_bounds.width / 2) - _what.shape.getPosition().x + (_what.shape_bounds.width / 2));
 	float distance_y(_which.shape.getPosition().y + (_what.shape_bounds.height /2 ) - _what.shape.getPosition().y + (_what.shape_bounds.width / 2));
@@ -102,15 +102,9 @@ void Ball::Consume(Ball _which, Ball& _what)
 		return;
 }
 
-void Ball::Set_position(float _x, float _y)
-{
-	this->shape.setPosition(_x, _y);
-	return;
-}
-
 void Ball::Take_control(Ball& _target)
 {
-	_target.shape.setFillColor(sf::Color::Green);
+	if (_target.shape.getFillColor() != sf::Color::Green) _target.shape.setFillColor(sf::Color::Green);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
