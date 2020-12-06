@@ -10,7 +10,7 @@ int main()
 	Ball shape(300, 300);
 	//std::vector<Ball> balls;
 	//balls.push_back(shape);
-	//balls[0].Set_position(100, 100);
+	//balls[0].setPosition(100, 200)
 	sf::Event event;
 	while (window.isOpen())
 	{

@@ -13,7 +13,7 @@
 
 #define _ball_h_
 
-class Ball : public sf::Drawable
+class Ball : public sf::Drawable, public sf::Transformable
 {
 public:
 	Ball();
