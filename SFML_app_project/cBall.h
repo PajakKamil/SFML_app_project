@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include <vector>
 #include <random>
@@ -33,6 +34,8 @@ private:
 	float Bottom();
 	float Right();
 	float Left();
+	sf::SoundBuffer buffer;
+	sf::Sound sound;
 
 };
 
