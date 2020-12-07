@@ -36,7 +36,7 @@ private:
 	float Left();
 	sf::SoundBuffer buffer;
 	sf::Sound sound;
-
+	sf::IntRect witaj;
 };
 
 #endif // !_ball_h_

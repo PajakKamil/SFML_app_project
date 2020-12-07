@@ -90,18 +90,13 @@ float Ball::Right()
 
 void Ball::Collision(Ball _which, Ball& _what)
 {
-	float distance_x(_which.shape.getPosition().x + (_what.shape_bounds.width / 2) - _what.shape.getPosition().x + (_what.shape_bounds.width / 2));
-	float distance_y(_which.shape.getPosition().y + (_what.shape_bounds.height /2 ) - _what.shape.getPosition().y + (_what.shape_bounds.width / 2));
+	float distance_x = (_which.shape.getPosition().x + (_what.shape_bounds.width / 2)) - (_what.shape.getPosition().x + (_what.shape_bounds.width / 2));
+	float distance_y = (_which.shape.getPosition().y + (_what.shape_bounds.height /2 )) - (_what.shape.getPosition().y + (_what.shape_bounds.width / 2));
 	float distance = std::sqrt(std::pow(distance_x, 2) + std::pow(distance_y, 2));
 	if (distance <= (_what.shape_bounds.width / 2) + (_what.shape_bounds.width / 2))
 	{
 		std::cout << "Uda³o sie :)\n";
 	}
-
-	/*if (_which.shape_bounds.intersects(_what.shape_bounds))
-	{
-		std::cout << "Kolizja jak jasny gwint~!";
-	}*/
 		return;
 }
 
