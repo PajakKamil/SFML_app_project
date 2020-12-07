@@ -17,8 +17,8 @@
 class Ball : public sf::Drawable, public sf::Transformable
 {
 public:
-	Ball();
-	Ball(float _x, float _y);
+	Ball(const float rad);
+	Ball(float _x, float _y, const float rad);
 	~Ball() = default;
 	void Update(sf::RenderWindow& window);
 	static void Collision(Ball& _master, Ball& _food);
@@ -26,7 +26,6 @@ public:
 
 private:
 	sf::CircleShape shape;
-	const float shape_radius{ 10.f };
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates state) const;
 	sf::FloatRect shape_bounds;
 	sf::Vector2f ball_speed{};

@@ -6,16 +6,16 @@ int main()
 	system("chcp 1250");
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Moje okno");
 	window.setFramerateLimit(60);
-	Ball main_shape;
-	Ball shape(300, 300);
+	Ball additional_ball(30);
+	Ball controled_ball(400, 300, 30);
 	//Vector:
 	/*std::vector<Ball> balls;
-	balls.push_back(shape);				//Dzia³a
+	balls.push_back(controled_ball);				//Dzia³a
 	balls[0].setPosition(100, 200)*/
 	
 	//Lista:
 	/*std::list<Ball> balls;
-	balls.push_back(shape);
+	balls.push_back(controled_ball);
 	balls.resize(10);
 	//auto balls_it = balls.begin();
 	//			//lub
@@ -28,16 +28,21 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+			if (event.type == sf::Event::Resized)
+			{
+				std::cout << "new width: " << event.size.width << "\n";
+				std::cout << "new height: " << event.size.width << "\n";
+			}
 		}
 
-		main_shape.Update(window);
-		shape.Update(window);
+		additional_ball.Update(window);
+		controled_ball.Update(window);
 		//balls[0].Update(window);
-		Ball::Collision(main_shape, shape);			// Kazd¹ kolizjê trzeba sprawdzaæ osobno (niestety / stety)
-		Ball::Take_control(shape);					// Nad jakim obiektem chcesz przej¹æ kontrolê?
+		Ball::Collision(additional_ball, controled_ball);			// Kazd¹ kolizjê trzeba sprawdzaæ osobno (niestety / stety)
+		Ball::Take_control(controled_ball);					// Nad jakim obiektem chcesz przej¹æ kontrolê?
 		window.clear(sf::Color::Black);
-		window.draw(main_shape);
-		window.draw(shape);
+		window.draw(additional_ball);
+		window.draw(controled_ball);
 		//Draw dla vectora:
 		//window.draw(balls[0]);
 
@@ -54,9 +59,9 @@ int main()
 
 // Sektor nie udanych eksperymentów i wstydliwej przesz³oœci <NIE WCHODZIÆ>
 
-//void Eat_them_all(sf::RenderWindow& window, std::list<sf::CircleShape>& balls, sf::CircleShape& shape, float& speed_x, float& speed_y);
+//void Eat_them_all(sf::RenderWindow& window, std::list<sf::CircleShape>& balls, sf::CircleShape& controled_ball, float& speed_x, float& speed_y);
 //
-//void Balls_collision(sf::RenderWindow& window, std::vector<sf::CircleShape>& balls, sf::CircleShape& shape);
+//void Balls_collision(sf::RenderWindow& window, std::vector<sf::CircleShape>& balls, sf::CircleShape& controled_ball);
 //
 //int main()
 //{
@@ -64,7 +69,7 @@ int main()
 //	sf::RenderWindow window(sf::VideoMode(1280, 720), "Kamil i jego OKNO!");
 //	window.setFramerateLimit(60);
 //	float shape_render_size = 10;
-//	sf::CircleShape shape{ shape_render_size };
+//	sf::CircleShape controled_ball{ shape_render_size };
 //	std::list<sf::CircleShape> balls(10);
 //	//std::vector<sf::CircleShape> balls;
 //	balls.resize(10, sf::CircleShape{ shape_render_size });
@@ -72,8 +77,8 @@ int main()
 //	//std::list<sf::CircleShape>::iterator balls_it = balls.begin();		// Czy ten iterator bêdzie potrzebny?
 //
 //	std::cout << "Czerwone pilki: " << balls.size() << std::endl;
-//	std::cout << "Rozmiar pilki: " << shape.getRadius() << std::endl;
-//	/*sf::FloatRect test = shape.getGlobalBounds();
+//	std::cout << "Rozmiar pilki: " << controled_ball.getRadius() << std::endl;
+//	/*sf::FloatRect test = controled_ball.getGlobalBounds();
 //	std::cout << "\nWidth: " << test.width / 2;*/
 //
 //	for (std::list<sf::CircleShape>::iterator balls_it = balls.begin(); balls_it != balls.end(); balls_it++)
@@ -89,10 +94,10 @@ int main()
 //			balls_it->setPosition(balls_it->getPosition().x, balls_it->getPosition().y + (shape_render_size * 2) + 3);
 //		}
 //	}
-//	shape.setFillColor(sf::Color::White);
+//	controled_ball.setFillColor(sf::Color::White);
 //	float speed_x{ 1 }, speed_y{ 1 };
 //	float speed_limit{ 12 };
-//	shape.setPosition(0, 0);
+//	controled_ball.setPosition(0, 0);
 //	std::vector<float> random_move_x(balls.size());
 //	std::vector<float> random_move_y(balls.size());
 //	for (int i = 0; i < balls.size(); i++)
@@ -120,8 +125,8 @@ int main()
 //			if (event.type == sf::Event::Closed)
 //				window.close();
 //		}
-//		Eat_them_all(window, balls, shape, speed_x, speed_y);
-//		shape.move(speed_x, speed_y);
+//		Eat_them_all(window, balls, controled_ball, speed_x, speed_y);
+//		controled_ball.move(speed_x, speed_y);
 //		int i = 0;
 //		for (std::list<sf::CircleShape>::iterator balls_it = balls.begin(); balls_it != balls.end(); balls_it++)
 //		{
@@ -146,22 +151,22 @@ int main()
 //			i++;
 //		}
 //
-//		if (shape.getPosition().y + (shape.getRadius() * 2) > window.getSize().y)
+//		if (controled_ball.getPosition().y + (controled_ball.getRadius() * 2) > window.getSize().y)
 //		{
 //			speed_y *= -1;
 //		}
-//		if (shape.getPosition().y + (shape.getRadius() * 2) <= (shape.getRadius() * 2))
+//		if (controled_ball.getPosition().y + (controled_ball.getRadius() * 2) <= (controled_ball.getRadius() * 2))
 //		{
 //			speed_y *= -1;
 //		}
-//		if (shape.getPosition().x + (shape.getRadius() * 2) > window.getSize().x)
+//		if (controled_ball.getPosition().x + (controled_ball.getRadius() * 2) > window.getSize().x)
 //		{
 //			speed_x *= -1;
 //		}
-//		if (shape.getPosition().x + (shape.getRadius() * 2) <= (shape.getRadius() * 2))
+//		if (controled_ball.getPosition().x + (controled_ball.getRadius() * 2) <= (controled_ball.getRadius() * 2))
 //		{
 //			speed_x *= -1;
-//			//shape.setPosition(shape.getPosition().x + shape.getRadius(), shape.getPosition().y);
+//			//controled_ball.setPosition(controled_ball.getPosition().x + controled_ball.getRadius(), controled_ball.getPosition().y);
 //		}
 //
 //		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -200,7 +205,7 @@ int main()
 //		}
 //
 //		window.clear(sf::Color::Black);
-//		window.draw(shape);
+//		window.draw(controled_ball);
 //		std::list<sf::CircleShape>::iterator it;
 //		for (it = balls.begin(); it != balls.end(); it++)
 //		{
@@ -214,12 +219,12 @@ int main()
 //	return 0;
 //}
 //
-//void Eat_them_all(sf::RenderWindow& window, std::list<sf::CircleShape>& balls, sf::CircleShape& shape, float &speed_x, float &speed_y)
+//void Eat_them_all(sf::RenderWindow& window, std::list<sf::CircleShape>& balls, sf::CircleShape& controled_ball, float &speed_x, float &speed_y)
 //{
-//	sf::FloatRect shape_1 = shape.getGlobalBounds();
+//	sf::FloatRect shape_1 = controled_ball.getGlobalBounds();
 //	std::vector<sf::FloatRect> balls_1(balls.size());
 //	static unsigned int balls_counter = balls.size() - 1;
-//	static float shape_radius = shape.getRadius();
+//	static float shape_radius = controled_ball.getRadius();
 //	int i = 0;
 //	for (std::list<sf::CircleShape>::iterator balls_it = balls.begin(); balls_it != balls.end(); balls_it++)
 //	{
@@ -229,8 +234,8 @@ int main()
 //	i = 0;
 //	for (std::list<sf::CircleShape>::iterator balls_it = balls.begin(); balls_it != balls.end(); balls_it++)
 //	{
-//		float distance_x(shape.getPosition().x + (balls_1[i].width / 2) - balls_it->getPosition().x + (balls_1[i].width / 2));
-//		float distance_y(shape.getPosition().y + (balls_1[i].width /2 ) - balls_it->getPosition().y + (balls_1[i].width / 2));
+//		float distance_x(controled_ball.getPosition().x + (balls_1[i].width / 2) - balls_it->getPosition().x + (balls_1[i].width / 2));
+//		float distance_y(controled_ball.getPosition().y + (balls_1[i].width /2 ) - balls_it->getPosition().y + (balls_1[i].width / 2));
 //		float distance = std::sqrt(std::pow(distance_x, 2) + std::pow(distance_y, 2));
 //		if (distance <= (balls_1[i].width / 2) + (balls_1[i].width / 2))
 //		{
@@ -240,7 +245,7 @@ int main()
 //			std::list<sf::CircleShape>::iterator iterator_delete = balls_it;
 //			balls.erase(iterator_delete);
 //			balls_it = balls.begin();
-//			shape.setRadius(shape.getRadius() + 2);
+//			controled_ball.setRadius(controled_ball.getRadius() + 2);
 //			if (speed_x > 0 && speed_y > 0)
 //			{
 //				speed_x++;
@@ -268,9 +273,9 @@ int main()
 //	return;
 //}
 //
-//void Balls_collision(sf::RenderWindow& window, std::vector<sf::CircleShape>& balls, sf::CircleShape& shape)
+//void Balls_collision(sf::RenderWindow& window, std::vector<sf::CircleShape>& balls, sf::CircleShape& controled_ball)
 //{
-//	sf::FloatRect shape_1 = shape.getGlobalBounds();
+//	sf::FloatRect shape_1 = controled_ball.getGlobalBounds();
 //	std::vector<sf::FloatRect> balls_1(balls.size());
 //	for (int i = 0; i < balls.size(); i++)
 //	{
@@ -278,8 +283,8 @@ int main()
 //	}
 //	for (int i = 0; i < balls.size(); i++)
 //	{
-//		float distance_x(shape.getPosition().x + (shape_1.width / 2) - balls[i].getPosition().x + (balls_1[i].width / 2));
-//		float distance_y(shape.getPosition().y + (shape_1.width / 2) - balls[i].getPosition().y + (balls_1[i].width / 2));
+//		float distance_x(controled_ball.getPosition().x + (shape_1.width / 2) - balls[i].getPosition().x + (balls_1[i].width / 2));
+//		float distance_y(controled_ball.getPosition().y + (shape_1.width / 2) - balls[i].getPosition().y + (balls_1[i].width / 2));
 //		float distance = std::sqrt(std::pow(distance_x, 2) + std::pow(distance_y, 2));
 //		if (distance <= (shape_1.width / 2) + (balls_1[i].width / 2))
 //		{
@@ -299,12 +304,12 @@ int main()
 //	sf::RenderWindow window(sf::VideoMode(1280, 720), "Kamil i jego OKNO!");
 //	window.setFramerateLimit(60);
 //	float shape_render_size = 10;
-//	sf::CircleShape shape{ shape_render_size };
+//	sf::CircleShape controled_ball{ shape_render_size };
 //	std::list<sf::CircleShape> balls;
 //	balls.resize(5, sf::CircleShape{ shape_render_size });
 //	std::cout << "Rozmiar listy: " << balls.size() << std::endl;
 //	std::list<sf::CircleShape>::iterator balls_it_s = balls.begin();
-//	shape.setFillColor(sf::Color::White);
+//	controled_ball.setFillColor(sf::Color::White);
 //	for (std::list<sf::CircleShape>::iterator balls_it = balls.begin(); balls_it != balls.end(); balls_it++)
 //	{
 //		balls_it->setFillColor(sf::Color::Red);
@@ -328,7 +333,7 @@ int main()
 //	}
 //	balls_it_s->setPosition(9999, 9999);
 //	float speed_x = 1, speed_y = 1;
-//	shape.setPosition(0, 0);
+//	controled_ball.setPosition(0, 0);
 //	std::cout << "X3: " << std::next(balls.begin(), 3)->getPosition().x << std::endl;
 //	std::cout << "X1: " << std::next(balls.begin(), 1)->getPosition().x << std::endl;
 //
@@ -341,34 +346,34 @@ int main()
 //			if (event.type == sf::Event::Closed)
 //				window.close();
 //		}
-//		Eat_them_all(window, balls, shape, speed_x, speed_y);
-//		shape.move(speed_x, speed_y);
+//		Eat_them_all(window, balls, controled_ball, speed_x, speed_y);
+//		controled_ball.move(speed_x, speed_y);
 //
 //		//for (std::list<sf::CircleShape>::iterator balls_it = balls.begin(); balls_it != balls.end(); balls_it++)
 //		//{
 //		//	balls_it->move(1, 1);
 //		//}
 //
-//		if (shape.getPosition().y + (shape.getRadius() * 2) > window.getSize().y)
+//		if (controled_ball.getPosition().y + (controled_ball.getRadius() * 2) > window.getSize().y)
 //		{
 //			speed_y *= -1;
 //		}
-//		if (shape.getPosition().y + (shape.getRadius() * 2) <= (shape.getRadius() * 2))
+//		if (controled_ball.getPosition().y + (controled_ball.getRadius() * 2) <= (controled_ball.getRadius() * 2))
 //		{
 //			speed_y *= -1;
 //		}
-//		if (shape.getPosition().x + (shape.getRadius() * 2) > window.getSize().x)
+//		if (controled_ball.getPosition().x + (controled_ball.getRadius() * 2) > window.getSize().x)
 //		{
 //			speed_x *= -1;
 //		}
-//		if (shape.getPosition().x + (shape.getRadius() * 2) <= (shape.getRadius() * 2))
+//		if (controled_ball.getPosition().x + (controled_ball.getRadius() * 2) <= (controled_ball.getRadius() * 2))
 //		{
 //			speed_x *= -1;
-//			//shape.setPosition(shape.getPosition().x + shape.getRadius(), shape.getPosition().y);
+//			//controled_ball.setPosition(controled_ball.getPosition().x + controled_ball.getRadius(), controled_ball.getPosition().y);
 //		}
 //
 //		window.clear(sf::Color::Black);
-//		window.draw(shape);
+//		window.draw(controled_ball);
 //
 //		if (balls.size() > 0)
 //		{

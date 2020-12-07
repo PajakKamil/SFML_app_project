@@ -1,13 +1,13 @@
 #include "cBall.h"
 
 
-Ball::Ball()
+Ball::Ball(const float rad)
 {
-	shape.setPosition(shape_radius, shape_radius);
-	shape.setRadius(shape_radius);
+	shape.setPosition(100, 200);
+	shape.setRadius(rad);
 	shape.setFillColor(sf::Color::White);
-	shape.setOrigin(shape_radius, shape_radius); // Ustawienie dla "origin" poczêtek wiesz tego... punktu, który to jest uwa¿any za punkt :)
-	ball_speed.x = ball_speed.y = 4;
+	shape.setOrigin(rad, rad); // Ustawienie dla "origin" poczêtek wiesz tego... punktu, który to jest uwa¿any za punkt :)
+	ball_speed.x = ball_speed.y = 0;
 	this->shape_bounds = shape.getGlobalBounds();
 	return;
 }
@@ -19,13 +19,12 @@ void Ball::draw(sf::RenderTarget& target, sf::RenderStates state) const
 }
 
 
-Ball::Ball(float _x, float _y)
+Ball::Ball(float _x, float _y,const float rad)
 {
 	srand(time(NULL));
 	shape.setPosition(_x, _y);
-	shape.setRadius(this->shape_radius);
-	shape.setOrigin(shape_radius, shape_radius);
-	shape.setFillColor(sf::Color::Red);
+	shape.setRadius(rad);
+	shape.setOrigin(rad, rad);
 	this->shape_bounds = shape.getGlobalBounds();
 	ball_speed.x= rand() % 7 - 3;
 	ball_speed.y = rand() % 7 - 3;
@@ -61,7 +60,7 @@ void Ball::Update(sf::RenderWindow& window)
 		ball_speed.y = -abs(ball_speed.y);
 		buffer.loadFromFile("Audio/Woof_woof.flac");
 		sound.setBuffer(buffer);
-		sound.play();
+		//sound.play(); // <---- wy³¹czy³em to szczekanie bo uchujam
 	}
 	return;
 }
