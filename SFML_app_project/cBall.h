@@ -21,7 +21,7 @@ public:
 	Ball(float _x, float _y);
 	~Ball() = default;
 	void Update(sf::RenderWindow& window);
-	static void Collision(Ball _master, Ball& _food);
+	static void Collision(Ball& _master, Ball& _food);
 	static void Take_control(Ball& _target);
 
 private:

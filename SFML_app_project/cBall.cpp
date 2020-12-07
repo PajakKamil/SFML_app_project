@@ -88,7 +88,7 @@ float Ball::Right()
 	return shape.getPosition().x + shape.getRadius();
 }
 
-void Ball::Collision(Ball _which, Ball& _what)
+void Ball::Collision(Ball& _which, Ball& _what)
 {
 	float distance_x = (_which.shape.getPosition().x + (_what.shape_bounds.width / 2)) - (_what.shape.getPosition().x + (_what.shape_bounds.width / 2));
 	float distance_y = (_which.shape.getPosition().y + (_what.shape_bounds.height /2 )) - (_what.shape.getPosition().y + (_what.shape_bounds.width / 2));
@@ -96,6 +96,10 @@ void Ball::Collision(Ball _which, Ball& _what)
 	if (distance <= (_what.shape_bounds.width / 2) + (_what.shape_bounds.width / 2))
 	{
 		std::cout << "Uda³o sie :)\n";
+		_which.ball_speed.x = -_which.ball_speed.x;
+		_which.ball_speed.y = -_which.ball_speed.y;
+		_what.ball_speed.x = -_what.ball_speed.x;		//Narazie beznadziejna kolizja ALEEEE!!! DZIA£A!
+		_what.ball_speed.y = -_what.ball_speed.y;
 	}
 		return;
 }
