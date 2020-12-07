@@ -59,6 +59,9 @@ void Ball::Update(sf::RenderWindow& window)
 	else if (Bottom() > window.getSize().y)
 	{
 		ball_speed.y = -abs(ball_speed.y);
+		buffer.loadFromFile("Audio/Woof_woof.flac");
+		sound.setBuffer(buffer);
+		sound.play();
 	}
 	return;
 }
