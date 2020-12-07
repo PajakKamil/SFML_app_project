@@ -45,20 +45,20 @@ void Ball::Update(sf::RenderWindow& window)
 	shape.move(ball_speed);
 	if (Left() < 0)
 	{
-		ball_speed.x *= -1;
+		ball_speed.x = abs(ball_speed.x);
 	}
 	else if (Right() > window.getSize().x)
 	{
-		ball_speed.x *= -1;
+		ball_speed.x = -abs(ball_speed.x);
 	}
 
 	if (Top() < 0)
 	{
-		ball_speed.y *= -1;
+		ball_speed.y = abs(ball_speed.y);
 	}
 	else if (Bottom() > window.getSize().y)
 	{
-		ball_speed.y *= -1;
+		ball_speed.y = -abs(ball_speed.y);
 	}
 	return;
 }
@@ -104,7 +104,10 @@ void Ball::Collision(Ball _which, Ball& _what)
 
 void Ball::Take_control(Ball& _target)
 {
-	if (_target.shape.getFillColor() != sf::Color::Green) _target.shape.setFillColor(sf::Color::Green);
+	if (_target.shape.getFillColor() != sf::Color::Green)
+	{
+		_target.shape.setFillColor(sf::Color::Green);
+	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{

@@ -9,9 +9,9 @@ int main()
 	Ball main_shape;
 	Ball shape(300, 300);
 	//Vector:
-	//std::vector<Ball> balls;
-	//balls.push_back(shape);				//Dzia³a
-	//balls[0].setPosition(100, 200)
+	/*std::vector<Ball> balls;
+	balls.push_back(shape);				//Dzia³a
+	balls[0].setPosition(100, 200)*/
 	
 	//Lista:
 	/*std::list<Ball> balls;
@@ -24,7 +24,6 @@ int main()
 	sf::Event event;
 	while (window.isOpen())
 	{
-		std::cout << "\nkurwa dzia³a XXDXDX???\n";
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
