@@ -46,15 +46,24 @@ void Ball::Update(sf::RenderWindow& window)
 	if (Left() < 0)
 	{
 		ball_speed.x = abs(ball_speed.x);
+		buffer.loadFromFile("Audio/Nice.flac");
+		sound.setBuffer(buffer);
+		sound.play();
 	}
 	else if (Right() > window.getSize().x)
 	{
 		ball_speed.x = -abs(ball_speed.x);
+		buffer.loadFromFile("Audio/Nice.flac");
+		sound.setBuffer(buffer);
+		sound.play();
 	}
 
 	if (Top() < 0)
 	{
 		ball_speed.y = abs(ball_speed.y);
+		buffer.loadFromFile("Audio/Nice.flac");
+		sound.setBuffer(buffer);
+		sound.play();
 	}
 	else if (Bottom() > window.getSize().y)
 	{
@@ -88,18 +97,18 @@ float Ball::Right()
 	return shape.getPosition().x + shape.getRadius();
 }
 
-void Ball::Collision(Ball& _which, Ball& _what)
+void Ball::Collision(Ball& _circle_shape, Ball& _circle_shape_1)
 {
-	float distance_x = (_which.shape.getPosition().x + (_what.shape_bounds.width / 2)) - (_what.shape.getPosition().x + (_what.shape_bounds.width / 2));
-	float distance_y = (_which.shape.getPosition().y + (_what.shape_bounds.height /2 )) - (_what.shape.getPosition().y + (_what.shape_bounds.width / 2));
+	float distance_x = (_circle_shape.shape.getPosition().x + (_circle_shape_1.shape_bounds.width / 2)) - (_circle_shape_1.shape.getPosition().x + (_circle_shape_1.shape_bounds.width / 2));
+	float distance_y = (_circle_shape.shape.getPosition().y + (_circle_shape_1.shape_bounds.height /2 )) - (_circle_shape_1.shape.getPosition().y + (_circle_shape_1.shape_bounds.width / 2));
 	float distance = std::sqrt(std::pow(distance_x, 2) + std::pow(distance_y, 2));
-	if (distance <= (_what.shape_bounds.width / 2) + (_what.shape_bounds.width / 2))
+	if (distance <= (_circle_shape_1.shape_bounds.width / 2) + (_circle_shape_1.shape_bounds.width / 2))
 	{
 		std::cout << "Uda³o sie :)\n";
-		_which.ball_speed.x = -_which.ball_speed.x;
-		_which.ball_speed.y = -_which.ball_speed.y;
-		_what.ball_speed.x = -_what.ball_speed.x;		//Narazie beznadziejna kolizja ALEEEE!!! DZIA£A!
-		_what.ball_speed.y = -_what.ball_speed.y;
+		_circle_shape.ball_speed.x = -_circle_shape.ball_speed.x;
+		_circle_shape.ball_speed.y = -_circle_shape.ball_speed.y;
+		_circle_shape_1.ball_speed.x = -_circle_shape_1.ball_speed.x;		//Narazie beznadziejna kolizja ALEEEE!!! DZIA£A!
+		_circle_shape_1.ball_speed.y = -_circle_shape_1.ball_speed.y;
 	}
 		return;
 }
