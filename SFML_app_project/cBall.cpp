@@ -104,7 +104,7 @@ void Ball::Collision(Ball& _circle_shape, Ball& _circle_shape_1)
 	float distance = std::sqrt(std::pow(distance_x, 2) + std::pow(distance_y, 2));
 	if (distance <= (_circle_shape_1.shape_bounds.width / 2) + (_circle_shape_1.shape_bounds.width / 2))
 	{
-		std::cout << "Uda³o sie :)\n";
+		//std::cout << "Uda³o sie :)\n";
 		_circle_shape.ball_speed.x = -_circle_shape.ball_speed.x;
 		_circle_shape.ball_speed.y = -_circle_shape.ball_speed.y;
 		_circle_shape_1.ball_speed.x = -_circle_shape_1.ball_speed.x;		//Narazie beznadziejna kolizja ALEEEE!!! DZIA£A!

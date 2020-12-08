@@ -5,12 +5,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
-#include <iostream>
-#include <vector>
 #include <random>
 #include <ctime>
 #include <cmath>
-#include <list>
 
 #define _ball_h_
 

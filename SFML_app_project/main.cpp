@@ -13,7 +13,6 @@ int main()
 	/*std::vector<Ball> balls;
 	balls.push_back(shape);				//Dzia³a
 	balls[0].setPosition(100, 200)*/
-	
 	//Lista:
 	/*std::list<Ball> balls;
 	balls.push_back(shape);
