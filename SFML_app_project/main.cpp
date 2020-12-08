@@ -8,6 +8,7 @@ int main()
 	window.setFramerateLimit(60);
 	Ball main_shape;
 	Ball shape(300, 300);
+	Rectangle racket(window);
 	//Vector:
 	/*std::vector<Ball> balls;
 	balls.push_back(shape);				//Dzia³a
@@ -32,12 +33,14 @@ int main()
 
 		main_shape.Update(window);
 		shape.Update(window);
+		Rectangle::Controll(window, racket);
 		//balls[0].Update(window);
 		Ball::Collision(main_shape, shape);			// Kazd¹ kolizjê trzeba sprawdzaæ osobno (niestety / stety)
-		Ball::Take_control(shape);					// Nad jakim obiektem chcesz przej¹æ kontrolê?
+		//Ball::Take_control(shape);					// Nad jakim obiektem (ball) chcesz przej¹æ kontrolê?
 		window.clear(sf::Color::Black);
 		window.draw(main_shape);
 		window.draw(shape);
+		window.draw(racket);
 		//Draw dla vectora:
 		//window.draw(balls[0]);
 
