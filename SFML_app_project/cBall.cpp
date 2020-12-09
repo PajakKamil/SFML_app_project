@@ -72,6 +72,7 @@ void Ball::Update(sf::RenderWindow& window)
 		sound.setBuffer(buffer);
 		sound.play();
 	}
+
 	return;
 }
 

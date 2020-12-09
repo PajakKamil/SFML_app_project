@@ -11,6 +11,8 @@
 
 #define _ball_h_
 
+class cCollision;
+
 class Ball : public sf::Drawable, public sf::Transformable
 {
 public:
@@ -21,18 +23,21 @@ public:
 	static void Collision(Ball& _circle_shape, Ball& _circle_shape_1);
 	static void Take_control(Ball& _target);
 
-private:
+protected:
+	sf::Vector2f ball_speed{};
 	sf::CircleShape shape;
+
+private:
 	const float shape_radius{ 10.f };
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates state) const;
-	sf::FloatRect shape_bounds;
-	sf::Vector2f ball_speed{};
 	float Top();
 	float Bottom();
 	float Right();
 	float Left();
 	sf::SoundBuffer buffer;
 	sf::Sound sound;
+	friend class cCollision;
+	sf::FloatRect shape_bounds;
 };
 
 #endif // !_ball_h_

@@ -29,7 +29,8 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-
+		cCollision::Collision(racket, shape);
+		cCollision::Collision(racket, main_shape);
 		main_shape.Update(window);
 		shape.Update(window);
 		Rectangle::Controll(window, racket);
@@ -40,6 +41,7 @@ int main()
 		window.draw(main_shape);
 		window.draw(shape);
 		window.draw(racket);
+
 		//Draw dla vectora:
 		//window.draw(balls[0]);
 
