@@ -8,7 +8,7 @@
 
 #define _collision_h_
 
-class cCollision : public Rectangle, public Ball, public sf::Transformable
+class cCollision
 {
 public:
 	static void Collision(Rectangle& _racket, Ball& _ball);

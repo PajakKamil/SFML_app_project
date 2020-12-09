@@ -7,7 +7,6 @@ Ball::Ball()
 	shape.setRadius(shape_radius);
 	shape.setFillColor(sf::Color::White);
 	shape.setOrigin(shape_radius, shape_radius); // Ustawienie dla "origin" poczêtek wiesz tego... punktu, który to jest uwa¿any za punkt :)
-	ball_speed.x = ball_speed.y = 4;
 	this->shape_bounds = shape.getGlobalBounds();
 	return;
 }
@@ -27,16 +26,17 @@ Ball::Ball(float _x, float _y)
 	shape.setOrigin(shape_radius, shape_radius);
 	shape.setFillColor(sf::Color::Red);
 	this->shape_bounds = shape.getGlobalBounds();
-	ball_speed.x= rand() % 7 - 3;
-	ball_speed.y = rand() % 7 - 3;
-	if (ball_speed.x == 0)
+	do
 	{
-		ball_speed.x--;
-	}
-	if (ball_speed.y == 0)
-	{
-		ball_speed.y++;
-	}
+		ball_speed.x = rand() % 7 - 3;
+		ball_speed.y = rand() % 7 - 3;
+		if (ball_speed.x != 0 && ball_speed.y != 0)
+		{
+			break;
+		}
+
+	} while (true);
+
 	return;
 }
 

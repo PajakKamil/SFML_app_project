@@ -24,7 +24,7 @@ public:
 	static void Take_control(Ball& _target);
 
 protected:
-	sf::Vector2f ball_speed{};
+	sf::Vector2f ball_speed{4, 4};
 	sf::CircleShape shape;
 
 private:
