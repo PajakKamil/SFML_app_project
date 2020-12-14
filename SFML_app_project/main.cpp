@@ -8,7 +8,14 @@ int main()
 	window.setFramerateLimit(60);
 	Ball main_shape;
 	Ball shape(300, 300);
+	//Ball* shape_dynamic = new Ball(500, 500);
 	Rectangle racket(window);
+	std::vector<Rectangle> bricks;
+	bricks.resize(10, racket);
+	for (int i = 0; i < bricks.size(); i++)
+	{
+		bricks[i].Bricks(window);
+	}
 	//Vector:
 	/*std::vector<Ball> balls;
 	balls.push_back(shape);				//Dzia³a
@@ -29,10 +36,12 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
+		Ball::Take_control(shape);
 		cCollision::Collision(racket, shape);			//Kolizja z paletk¹
 		cCollision::Collision(racket, main_shape);		//Kolizja z paletk¹
 		main_shape.Update(window);
 		shape.Update(window);
+		//shape_dynamic->Update(window, shape_dynamic);
 		Rectangle::Controll(window, racket);
 		//balls[0].Update(window);
 		Ball::Collision(main_shape, shape);			// Kazd¹ kolizjê trzeba sprawdzaæ osobno (niestety / stety)
@@ -41,7 +50,10 @@ int main()
 		window.draw(main_shape);
 		window.draw(shape);
 		window.draw(racket);
-
+		for (int i = 0; i < bricks.size(); i++)
+			window.draw(bricks[i]);
+		/*if(shape_dynamic != NULL)
+		window.draw(*shape_dynamic);*/
 		//Draw dla vectora:
 		//window.draw(balls[0]);
 
@@ -53,10 +65,12 @@ int main()
 		}*/
 		window.display();
 	}
+
+
 	return 0;
 }
 
-// Sektor nie udanych eksperymentów i wstydliwej przesz³oœci <NIE WCHODZIÆ>
+// Sektor nie udanych eksperymentów i wstydliwej przesz³oœci
 
 //void Eat_them_all(sf::RenderWindow& window, std::list<sf::CircleShape>& balls, sf::CircleShape& shape, float& speed_x, float& speed_y);
 //

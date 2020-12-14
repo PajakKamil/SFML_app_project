@@ -13,13 +13,14 @@
 
 class cCollision;
 
-class Ball : public sf::Drawable, public sf::Transformable
+class Ball : public sf::Drawable
 {
 public:
 	Ball();
 	Ball(float _x, float _y);
 	~Ball() = default;
 	void Update(sf::RenderWindow& window);
+	void Update(sf::RenderWindow& window, Ball*& _target);
 	static void Collision(Ball& _circle_shape, Ball& _circle_shape_1);
 	static void Take_control(Ball& _target);
 

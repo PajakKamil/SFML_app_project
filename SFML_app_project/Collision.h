@@ -12,6 +12,7 @@ class cCollision
 {
 public:
 	static void Collision(Rectangle& _racket, Ball& _ball);
+	static void Collision(std::vector<Rectangle>& _bricks, Ball& _ball);
 private:
 };
 

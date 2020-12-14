@@ -72,9 +72,47 @@ void Ball::Update(sf::RenderWindow& window)
 		sound.setBuffer(buffer);
 		sound.play();
 	}
-
 	return;
 }
+
+
+//void Ball::Update(sf::RenderWindow& window, Ball*& _target)
+//{
+//	shape.move(ball_speed);
+//	if (Left() < 0)
+//	{
+//		ball_speed.x = abs(ball_speed.x);
+//		buffer.loadFromFile("Audio/Nice.flac");
+//		sound.setBuffer(buffer);
+//		sound.play();
+//	}
+//	else if (Right() > window.getSize().x)
+//	{
+//		ball_speed.x = -abs(ball_speed.x);
+//		buffer.loadFromFile("Audio/Nice.flac");
+//		sound.setBuffer(buffer);
+//		sound.play();
+//	}
+//
+//	if (Top() < 0)
+//	{
+//		ball_speed.y = abs(ball_speed.y);
+//		buffer.loadFromFile("Audio/Nice.flac");
+//		sound.setBuffer(buffer);
+//		sound.play();
+//	}
+//	else if (Bottom() > window.getSize().y)
+//	{
+//		ball_speed.y = -abs(ball_speed.y);
+//		buffer.loadFromFile("Audio/Woof_woof.flac");
+//		sound.setBuffer(buffer);
+//		sound.play();
+//		_target = NULL;
+//		delete _target;
+//		_target = NULL;
+//	}
+//	return;
+//}
 
 
 float Ball::Top()
