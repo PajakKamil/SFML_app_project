@@ -17,7 +17,6 @@ void Rectangle::draw(sf::RenderTarget& target, sf::RenderStates state) const
 	return;
 }
 
-
 void Rectangle::Controll(sf::RenderWindow& window, Rectangle& _target)
 {
 	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && _target.shape.getPosition().x - (_target.shape_bounds.width / 2) > 0)
@@ -65,19 +64,22 @@ void Rectangle::Bricks(sf::RenderWindow& window)
 	//	}
 	//}
 	//shape.setOrigin()
+	//std::cout << "X: " << position.x << std::endl << "Y: " << position.y << "   <----- Pocz¹tek\n";
 	shape.setOrigin(bricks_size.x / 2, bricks_size.y / 2);
 	shape.setSize(bricks_size);
-	if (position.x < window.getSize().x)
+	if (position.x < window.getSize().x * 2)
 	{
-		this->shape.setPosition(position.x / 2, position.y / 2);
-		position.x += position.x;
+		this->shape.setPosition(position.x / 2 + 10, position.y / 2);
+		position.x += (bricks_size.x * 2) + 2;
+
 	}
-	else if (position.x > window.getSize().x)
+	else if (position.x > window.getSize().x * 2)
 	{
-		position.y += position.y;
+		position.y += (bricks_size.y * 2) + 2;
 		position.x = bricks_size.x;
-		shape.setPosition(position.x + 2, position.y / 2);
+		shape.setPosition(position.x / 2 + 10, position.y / 2);
+		position.x += (bricks_size.x * 2) + 2;
 	}
-	std::cout << "X: " << shape.getPosition().x << std::endl << "Y: " << shape.getPosition().y << std::endl;
+	std::cout << "X: " << position.x << std::endl << "Y: " << position.y << "   <----- Koniec\n\n\n\n";
 	return;
 }

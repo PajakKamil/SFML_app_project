@@ -3,7 +3,7 @@
 
 Ball::Ball()
 {
-	shape.setPosition(shape_radius, shape_radius);
+	shape.setPosition(shape_radius + 500, shape_radius + 500);
 	shape.setRadius(shape_radius);
 	shape.setFillColor(sf::Color::White);
 	shape.setOrigin(shape_radius, shape_radius); // Ustawienie dla "origin" poczêtek wiesz tego... punktu, który to jest uwa¿any za punkt :)
@@ -65,12 +65,15 @@ void Ball::Update(sf::RenderWindow& window)
 		sound.setBuffer(buffer);
 		sound.play();
 	}
-	else if (Bottom() > window.getSize().y)
+	else if (Bottom() == window.getSize().y)
 	{
-		ball_speed.y = -abs(ball_speed.y);
-		buffer.loadFromFile("Audio/Woof_woof.flac");
+		ball_speed.x = 0;
+		ball_speed.y = 0;
+		shape.setPosition(window.getSize().x / static_cast<float>(2), 9999);
+		//ball_speed.y = -abs(ball_speed.y);
+		/*buffer.loadFromFile("Audio/Woof_woof.flac");
 		sound.setBuffer(buffer);
-		sound.play();
+		sound.play();*/
 	}
 	return;
 }
@@ -152,46 +155,46 @@ void Ball::Collision(Ball& _circle_shape, Ball& _circle_shape_1)
 		return;
 }
 
-void Ball::Take_control(Ball& _target)
+void Ball::Take_control()
 {
-	if (_target.shape.getFillColor() != sf::Color::Green)
+	if (shape.getFillColor() != sf::Color::Green)
 	{
-		_target.shape.setFillColor(sf::Color::Green);
+		shape.setFillColor(sf::Color::Green);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		_target.ball_speed.y -= 0.12;
+		ball_speed.y -= 0.12;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		_target.ball_speed.y += 0.12;
+		ball_speed.y += 0.12;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		_target.ball_speed.x += 0.12;
+		ball_speed.x += 0.12;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		_target.ball_speed.x -= 0.12;
+		ball_speed.x -= 0.12;
 	}
 
-	if (_target.ball_speed.x > 7)
+	if (ball_speed.x > 7)
 	{
-		_target.ball_speed.x = 7;
+		ball_speed.x = 7;
 	}
-	else if (_target.ball_speed.x < -7)
+	else if (ball_speed.x < -7)
 	{
-		_target.ball_speed.x = -7;
+		ball_speed.x = -7;
 	}
 
-	if (_target.ball_speed.y > 7)
+	if (ball_speed.y > 7)
 	{
-		_target.ball_speed.y = 7;
+		ball_speed.y = 7;
 	}
-	else if (_target.ball_speed.y < -7)
+	else if (ball_speed.y < -7)
 	{
-		_target.ball_speed.y = -7;
+		ball_speed.y = -7;
 	}
 	return;
 }

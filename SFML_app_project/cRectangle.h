@@ -28,6 +28,7 @@ private:
 	friend class cCollision;
 	sf::FloatRect shape_bounds;
 	static sf::Vector2f position;
+	unsigned int brick_life = 3;
 };
 
 #endif //_rectangle_h

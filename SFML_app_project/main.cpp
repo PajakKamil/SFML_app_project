@@ -10,8 +10,9 @@ int main()
 	Ball shape(300, 300);
 	//Ball* shape_dynamic = new Ball(500, 500);
 	Rectangle racket(window);
+	cCollision collision;
 	std::vector<Rectangle> bricks;
-	bricks.resize(10, racket);
+	bricks.resize(132, racket);
 	for (int i = 0; i < bricks.size(); i++)
 	{
 		bricks[i].Bricks(window);
@@ -36,9 +37,15 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-		Ball::Take_control(shape);
-		cCollision::Collision(racket, shape);			//Kolizja z paletk¹
-		cCollision::Collision(racket, main_shape);		//Kolizja z paletk¹
+		//shape.Take_control();
+		collision.Collision(racket, shape);
+		collision.Collision(bricks, shape);
+		collision.Collision(racket, main_shape);
+		collision.Collision(bricks, main_shape);
+		//cCollision::Collision(racket, shape);			//Kolizja z paletk¹
+		//cCollision::Collision(racket, main_shape);		//Kolizja z paletk¹
+		//cCollision::Collision(bricks, shape);
+		//cCollision::Collision(bricks, main_shape);
 		main_shape.Update(window);
 		shape.Update(window);
 		//shape_dynamic->Update(window, shape_dynamic);

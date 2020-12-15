@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
+#include "cRectangle.h"
 #include <random>
 #include <ctime>
 #include <cmath>
@@ -22,7 +23,7 @@ public:
 	void Update(sf::RenderWindow& window);
 	void Update(sf::RenderWindow& window, Ball*& _target);
 	static void Collision(Ball& _circle_shape, Ball& _circle_shape_1);
-	static void Take_control(Ball& _target);
+	void Take_control();
 
 protected:
 	sf::Vector2f ball_speed{4, 4};
