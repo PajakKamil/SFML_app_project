@@ -80,6 +80,6 @@ void Rectangle::Bricks(sf::RenderWindow& window)
 		shape.setPosition(position.x / 2 + 10, position.y / 2);
 		position.x += (bricks_size.x * 2) + 2;
 	}
-	std::cout << "X: " << position.x << std::endl << "Y: " << position.y << "   <----- Koniec\n\n\n\n";
+	//std::cout << "X: " << position.x << std::endl << "Y: " << position.y << "   <----- Koniec\n\n\n\n";
 	return;
 }

@@ -178,6 +178,10 @@ void Ball::Take_control()
 	{
 		ball_speed.x -= 0.12;
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		ball_speed.x = ball_speed.y = 0;
+	}
 
 	if (ball_speed.x > 7)
 	{

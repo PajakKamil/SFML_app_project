@@ -37,7 +37,7 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-		//shape.Take_control();
+		shape.Take_control();
 		collision.Collision(racket, shape);
 		collision.Collision(bricks, shape);
 		collision.Collision(racket, main_shape);
