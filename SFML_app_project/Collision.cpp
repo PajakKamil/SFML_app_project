@@ -24,11 +24,11 @@ void cCollision::Collision(std::vector<Rectangle>& _bricks, Ball& _ball)
 			{
 				_ball.ball_speed.y = -abs(_ball.ball_speed.y);
 			}
-			if (_ball.shape.getPosition().x < rect.shape.getGlobalBounds().left) // Odbicie prawej krawêdzi
+			if (_ball.shape.getPosition().x < rect.shape.getGlobalBounds().left) // Odbicie prawej krawêdzi ----> |
 			{
 				_ball.ball_speed.x = -abs(_ball.ball_speed.x);
 			}
-			if (_ball.shape.getPosition().x > brick_shape_right_x)	//Odbicie od lewej krawêdzi
+			if (_ball.shape.getPosition().x > brick_shape_right_x)	//Odbicie od lewej krawêdzi | <------
 			{
 				_ball.ball_speed.x = abs(_ball.ball_speed.x);
 			}
