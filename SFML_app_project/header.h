@@ -3,6 +3,8 @@
 
 #include "cBall.h"
 #include "cRectangle.h"
+#include "Collision.h"
+#include <iostream>
 
 #define _main_header_h_
 

@@ -8,12 +8,19 @@ int main()
 	window.setFramerateLimit(60);
 	Ball main_shape;
 	Ball shape(300, 300);
+	//Ball* shape_dynamic = new Ball(500, 500);
 	Rectangle racket(window);
+	cCollision collision;
+	std::vector<Rectangle> bricks;
+	bricks.resize(132, racket);
+	for (int i = 0; i < bricks.size(); i++)
+	{
+		bricks[i].Bricks(window);
+	}
 	//Vector:
 	/*std::vector<Ball> balls;
 	balls.push_back(shape);				//Dzia³a
 	balls[0].setPosition(100, 200)*/
-	
 	//Lista:
 	/*std::list<Ball> balls;
 	balls.push_back(shape);
@@ -30,9 +37,18 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-
+		shape.Take_control();
+		collision.Collision(racket, shape);
+		collision.Collision(bricks, shape);
+		collision.Collision(racket, main_shape);
+		collision.Collision(bricks, main_shape);
+		//cCollision::Collision(racket, shape);			//Kolizja z paletk¹
+		//cCollision::Collision(racket, main_shape);		//Kolizja z paletk¹
+		//cCollision::Collision(bricks, shape);
+		//cCollision::Collision(bricks, main_shape);
 		main_shape.Update(window);
 		shape.Update(window);
+		//shape_dynamic->Update(window, shape_dynamic);
 		Rectangle::Controll(window, racket);
 		//balls[0].Update(window);
 		Ball::Collision(main_shape, shape);			// Kazd¹ kolizjê trzeba sprawdzaæ osobno (niestety / stety)
@@ -41,6 +57,10 @@ int main()
 		window.draw(main_shape);
 		window.draw(shape);
 		window.draw(racket);
+		for (int i = 0; i < bricks.size(); i++)
+			window.draw(bricks[i]);
+		/*if(shape_dynamic != NULL)
+		window.draw(*shape_dynamic);*/
 		//Draw dla vectora:
 		//window.draw(balls[0]);
 
@@ -52,10 +72,12 @@ int main()
 		}*/
 		window.display();
 	}
+
+
 	return 0;
 }
 
-// Sektor nie udanych eksperymentów i wstydliwej przesz³oœci <NIE WCHODZIÆ>
+// Sektor nie udanych eksperymentów i wstydliwej przesz³oœci
 
 //void Eat_them_all(sf::RenderWindow& window, std::list<sf::CircleShape>& balls, sf::CircleShape& shape, float& speed_x, float& speed_y);
 //
